@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        tools:src="@drawable/ic_launcher_background"/>
+
+    <TextView
+        android:id="@+id/ten_ma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/img"
+        android:text="tên món ăn"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tien_ma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ten_ma"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="70dp"
+        android:layout_toEndOf="@+id/img"
+        android:text="giá tiền"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ten_ma"
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="70dp"
+        android:layout_toEndOf="@+id/tien_ma"
+        android:text="X"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/so_luong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ten_ma"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="70dp"
+        android:layout_toEndOf="@+id/textView14"
+        android:text="số lg"
+        android:textSize="20sp" />
+</RelativeLayout>

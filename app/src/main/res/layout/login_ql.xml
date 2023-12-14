@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_nv"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".quanly.LoginQL">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="171dp"
+        android:layout_weight="1"
+        android:background="@color/ora_2"
+        android:orientation="vertical"></LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/manager_icon" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="Quản Lý"
+        android:textColor="@color/ora_name"
+        android:textSize="20sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:boxStrokeColor="@color/ora_b"
+        app:hintTextColor="@color/ora_b">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/user_ql"
+            android:drawableStart="@drawable/baseline_person_outline_24"
+            android:drawablePadding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên đăng nhập" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:boxStrokeColor="@color/ora_b"
+        app:hintTextColor="@color/ora_b"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleContentDescription="Mật khẩu"
+        app:passwordToggleTint="@color/ora_2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pass_ql"
+            android:drawableStart="@drawable/baseline_lock_24"
+            android:inputType="textPassword"
+            android:drawablePadding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mật khẩu" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/lg_ql"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/ora_2"
+        android:text="Đăng nhập"
+        app:cornerRadius="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="171dp"
+        android:background="@color/ora_2"
+        android:orientation="vertical"
+        android:layout_weight="1"></LinearLayout>
+
+
+</LinearLayout>

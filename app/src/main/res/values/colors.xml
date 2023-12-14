@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="ora_b">#B82F05</color>
+    <color name="ora_1">#F35625</color>
+    <color name="ora_2">#CC6646</color>
+    <color name="ora_name">#BA6950</color>
+</resources>
