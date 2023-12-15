@@ -34,10 +34,10 @@ public class ViewDHMAAdapter extends RecyclerView.Adapter<ViewDHMAHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewDHMAHolder holder, int position) {
         DonHang_MonAn dhma = listDHMA.get(position);
-        holder.img.setImageResource(Integer.parseInt(dhma.getMa_id().getHinh_anh().toString()));
-        holder.ten.setText(dhma.getMa_id().getTen());
-        holder.tien.setText(dhma.getMa_id().getTien());
-        holder.so_lg.setText(dhma.getSo_luong());
+        holder.img.setImageResource(Integer.parseInt(dhma.getImageUrl().toString()));
+        holder.ten.setText(dhma.getName());
+        holder.tien.setText(dhma.getPrice().toString());
+        holder.so_lg.setText(dhma.getQuantity());
     }
 
     @Override

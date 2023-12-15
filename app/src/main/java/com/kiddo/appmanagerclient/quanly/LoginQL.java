@@ -13,6 +13,7 @@ import com.kiddo.appmanagerclient.R;
 import com.kiddo.appmanagerclient.datastore.TokenStore;
 import com.kiddo.appmanagerclient.model.Account;
 import com.kiddo.appmanagerclient.model.AuthReponse;
+import com.kiddo.appmanagerclient.retrofit.LoginAPI;
 import com.kiddo.appmanagerclient.retrofit.QuanLyAPI;
 import com.kiddo.appmanagerclient.retrofit.RetrofitService;
 
@@ -32,7 +33,7 @@ public class LoginQL extends AppCompatActivity {
     private String Role = "ROLE_MANAGER";
 
     RetrofitService retrofitService = new RetrofitService();
-    QuanLyAPI quanLyAPI = retrofitService.getRetrofit().create(QuanLyAPI.class);
+    LoginAPI loginAPI = retrofitService.getRetrofit().build().create(LoginAPI.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class LoginQL extends AppCompatActivity {
                 account.setUserName(username.getText().toString().trim());
                 account.setPassword(password.getText().toString().trim());
 
-                quanLyAPI.login(account)
+                loginAPI.loginQL(account)
                         .enqueue(new Callback<AuthReponse>() {
                             @Override
                             public void onResponse(Call<AuthReponse> call, Response<AuthReponse> response) {

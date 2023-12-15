@@ -1,8 +1,6 @@
 package com.kiddo.appmanagerclient.model;
 
 public class NhanVien {
-
-
     private String token;
     private String name;
     private String role;

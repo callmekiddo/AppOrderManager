@@ -1,31 +1,49 @@
 package com.kiddo.appmanagerclient.model;
 
 public class DonHang_MonAn {
-    private MonAn ma_id;
-    private DonHang dh_id;
-    private int so_luong;
+    private Long id;
+    private String name;
+    private int quantity;
+    private Double price;
+    private String imageUrl;
 
-    public MonAn getMa_id() {
-        return ma_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setMa_id(MonAn ma_id) {
-        this.ma_id = ma_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public DonHang getDh_id() {
-        return dh_id;
+    public String getName() {
+        return name;
     }
 
-    public void setDh_id(DonHang dh_id) {
-        this.dh_id = dh_id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getSo_luong() {
-        return so_luong;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setSo_luong(int so_luong) {
-        this.so_luong = so_luong;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

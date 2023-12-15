@@ -109,7 +109,7 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:backgroundTint="@color/ora_2"
-        android:text="Lưu" />
+        android:text="Xác nhận" />
 
     <TextView
         android:id="@+id/textView4"

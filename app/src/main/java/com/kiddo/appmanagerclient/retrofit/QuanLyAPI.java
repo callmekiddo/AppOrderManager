@@ -1,7 +1,6 @@
 package com.kiddo.appmanagerclient.retrofit;
 
-import com.kiddo.appmanagerclient.model.Account;
-import com.kiddo.appmanagerclient.model.AuthReponse;
+
 import com.kiddo.appmanagerclient.model.DonHang;
 import com.kiddo.appmanagerclient.model.KhachHang;
 
@@ -14,11 +13,9 @@ import retrofit2.http.POST;
 
 public interface QuanLyAPI {
 
-    @POST("/api/manager/login")
-    Call<AuthReponse> login(@Body Account account);
 
     @GET("/api/order")
-    Call<List<DonHang>> getDH(@Body String token);
+    Call<List<DonHang>> getDH();
 
     @GET("/api/user")
     Call<KhachHang> getKH(@Body String token);

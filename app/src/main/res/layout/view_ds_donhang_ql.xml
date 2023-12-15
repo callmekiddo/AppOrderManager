@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/donhang_ql"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:clickable="true"
     android:background="@drawable/border_textview">
 
     <TextView
@@ -35,6 +38,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="22dp"
+        android:layout_marginBottom="20dp"
         android:text="Thời gian đặt hàng:"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -47,42 +51,8 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="22dp"
         android:layout_toEndOf="@+id/textView8"
-        android:text="date"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView8"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="22dp"
-        android:text="Nhân viên giao hàng:"
+        android:maxLines="1"
         android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView12"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/ora_2"
-        android:text="Xác nhận" />
-
-    <TextView
-        android:id="@+id/ten_nv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/create_date"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="22dp"
-        android:layout_toEndOf="@+id/textView12"
-        android:text="ten_nv"
-        android:textSize="18sp" />
+        tools:text="16-01-2002 14:01:02" />
 
 </RelativeLayout>

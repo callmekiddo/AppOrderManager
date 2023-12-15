@@ -14,4 +14,7 @@ public class TokenStore{
         sharedPreferences.edit().putString("TOKEN",token).apply();
     }
 
+    public String getToken(){
+        return sharedPreferences.getString("TOKEN","");
+    }
 }

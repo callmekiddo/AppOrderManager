@@ -9,11 +9,14 @@ import com.kiddo.appmanagerclient.R;
 import com.kiddo.appmanagerclient.model.DonHang;
 import com.kiddo.appmanagerclient.nhanvien.view.ViewDHAdapter_nv;
 import com.kiddo.appmanagerclient.retrofit.NhanVienAPI;
+import com.kiddo.appmanagerclient.retrofit.QuanLyAPI;
 import com.kiddo.appmanagerclient.retrofit.RetrofitService;
+import com.kiddo.appmanagerclient.retrofit.TokenInterceptor;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,7 +30,8 @@ public class HomeNV extends AppCompatActivity {
     private List<DonHang> listDH;
 
     RetrofitService retrofitService = new RetrofitService();
-    NhanVienAPI nhanVienAPI = retrofitService.getRetrofit().create(NhanVienAPI.class);
+    OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new TokenInterceptor()).build();
+    NhanVienAPI nhanVienAPI = retrofitService.getRetrofit().client(client).build().create(NhanVienAPI.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +39,7 @@ public class HomeNV extends AppCompatActivity {
         setContentView(R.layout.home_nv);
 
         listDH = new ArrayList<>();
-//        getListDH();
+        getListDH();
 
     }
 

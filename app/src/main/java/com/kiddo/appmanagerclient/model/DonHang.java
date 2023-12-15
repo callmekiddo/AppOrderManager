@@ -1,19 +1,31 @@
 package com.kiddo.appmanagerclient.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 public class DonHang {
     private Long id;
 
-    private KhachHang kh_id;
+    private String phone;
 
-    private ChiNhanh cn_id;
+    private String name;
 
-    private NhanVien nv_id;
-    private Date create_at;
-    private Date deliver_at;
-    private String dia_chi;
-    private String trang_thai;
+    private double price;
+
+    private String createdAt;
+
+    private String status;
+
+    private List<DonHang_MonAn> orderItemDtoList;
+
+    public List<DonHang_MonAn> getOrderItemDtoList() {
+        return orderItemDtoList;
+    }
+
+    public void setOrderItemDtoList(List<DonHang_MonAn> orderItemDtoList) {
+        this.orderItemDtoList = orderItemDtoList;
+    }
 
     public Long getId() {
         return id;
@@ -23,59 +35,43 @@ public class DonHang {
         this.id = id;
     }
 
-    public KhachHang getKh_id() {
-        return kh_id;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setKh_id(KhachHang kh_id) {
-        this.kh_id = kh_id;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public ChiNhanh getCn_id() {
-        return cn_id;
+    public String getName() {
+        return name;
     }
 
-    public void setCn_id(ChiNhanh cn_id) {
-        this.cn_id = cn_id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public NhanVien getNv_id() {
-        return nv_id;
+    public double getPrice() {
+        return price;
     }
 
-    public void setNv_id(NhanVien nv_id) {
-        this.nv_id = nv_id;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public Date getCreate_at() {
-        return create_at;
+    public String getCreateAt() {
+        return createdAt;
     }
 
-    public void setCreate_at(Date create_at) {
-        this.create_at = create_at;
+    public void setCreateAt(String createAt) {
+        this.createdAt = createAt;
     }
 
-    public Date getDeliver_at() {
-        return deliver_at;
+    public String getStatus() {
+        return status;
     }
 
-    public void setDeliver_at(Date deliver_at) {
-        this.deliver_at = deliver_at;
-    }
-
-    public String getDia_chi() {
-        return dia_chi;
-    }
-
-    public void setDia_chi(String dia_chi) {
-        this.dia_chi = dia_chi;
-    }
-
-    public String getTrang_thai() {
-        return trang_thai;
-    }
-
-    public void setTrang_thai(String trang_thai) {
-        this.trang_thai = trang_thai;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

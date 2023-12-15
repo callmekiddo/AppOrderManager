@@ -13,6 +13,7 @@ import com.kiddo.appmanagerclient.R;
 import com.kiddo.appmanagerclient.model.Account;
 import com.kiddo.appmanagerclient.model.AuthReponse;
 import com.kiddo.appmanagerclient.quanly.HomeQL;;
+import com.kiddo.appmanagerclient.retrofit.LoginAPI;
 import com.kiddo.appmanagerclient.retrofit.NhanVienAPI;
 import com.kiddo.appmanagerclient.retrofit.RetrofitService;
 
@@ -29,10 +30,10 @@ public class LoginNV extends AppCompatActivity {
 
     private AuthReponse authReponse;
 
-    private String Role = "ROLE";
+    private String Role = "ROLE_STAFF";
 
     RetrofitService retrofitService = new RetrofitService();
-    NhanVienAPI quanLyAPI = retrofitService.getRetrofit().create(NhanVienAPI.class);
+    LoginAPI loginAPI = retrofitService.getRetrofit().build().create(LoginAPI.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +44,6 @@ public class LoginNV extends AppCompatActivity {
         password = findViewById(R.id.pass_nv);
         loginbt = findViewById(R.id.lg_nv);
 
-        checkUser();
-
         onClickLogin();
     }
 
@@ -52,7 +51,13 @@ public class LoginNV extends AppCompatActivity {
         loginbt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                quanLyAPI.login(account)
+                checkUser();
+
+                account = new Account();
+                account.setUserName(username.getText().toString().trim());
+                account.setPassword(password.getText().toString().trim());
+
+                loginAPI.loginNV(account)
                         .enqueue(new Callback<AuthReponse>() {
                             @Override
                             public void onResponse(Call<AuthReponse> call, Response<AuthReponse> response) {
@@ -60,7 +65,7 @@ public class LoginNV extends AppCompatActivity {
                                     Toast.makeText(LoginNV.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                                 } else {
                                     authReponse = response.body();
-                                    if (authReponse.getRole().toString() == Role) {
+                                    if (authReponse.getRole().get(1).equals(Role)) {
                                         Intent intent = new Intent(LoginNV.this, HomeQL.class);
                                         intent.putExtra("token", authReponse.getAccessToken());
                                         startActivity(intent);

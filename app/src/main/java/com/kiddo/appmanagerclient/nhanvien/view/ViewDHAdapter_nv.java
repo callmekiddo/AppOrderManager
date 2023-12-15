@@ -11,6 +11,7 @@ import com.kiddo.appmanagerclient.R;
 import com.kiddo.appmanagerclient.model.DonHang;
 
 import java.util.List;
+import java.util.Locale;
 
 public class ViewDHAdapter_nv extends RecyclerView.Adapter<ViewDHHolder_nv> {
     private List<DonHang> listDH;
@@ -32,8 +33,8 @@ public class ViewDHAdapter_nv extends RecyclerView.Adapter<ViewDHHolder_nv> {
     @Override
     public void onBindViewHolder(@NonNull ViewDHHolder_nv holder, int position) {
         DonHang dh = listDH.get(position);
-        holder.id_dh.setText(dh.getId().toString());
-        holder.create_date.setText(dh.getKh_id().toString());
+        holder.id_dh.setText(String.format(Locale.getDefault(),"%d",dh.getId()));
+        holder.create_date.setText(dh.getCreateAt());
     }
 
     @Override

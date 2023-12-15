@@ -8,6 +8,10 @@
     tools:context=".quanly.HomeQL">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/view_dh_ql"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/view_ds_donhang_ql"
+        tools:itemCount="3"/>
 </LinearLayout>

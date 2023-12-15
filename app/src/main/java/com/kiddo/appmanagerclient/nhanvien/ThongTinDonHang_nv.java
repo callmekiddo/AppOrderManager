@@ -15,7 +15,7 @@ public class ThongTinDonHang_nv extends AppCompatActivity {
     private TextView ten_kh, sdt, dia_chi;
 
     RetrofitService retrofitService = new RetrofitService();
-    NhanVienAPI nhanVienAPI = retrofitService.getRetrofit().create(NhanVienAPI.class);
+    NhanVienAPI nhanVienAPI = retrofitService.getRetrofit().build().create(NhanVienAPI.class);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

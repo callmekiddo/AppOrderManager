@@ -9,11 +9,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kiddo.appmanagerclient.R;
 
 public class ViewDHHolder_ql extends RecyclerView.ViewHolder {
-    TextView id_dh, id_kh, create_date, ten_nv ;
+    TextView id_dh, create_date;
     public ViewDHHolder_ql(@NonNull View itemView) {
         super(itemView);
         id_dh = itemView.findViewById(R.id.id_dh);
         create_date = itemView.findViewById(R.id.create_date);
-        ten_nv = itemView.findViewById(R.id.ten_nv);
+    }
+    public void bind(OnItemClickListener onItemClickListener){
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onItemClickListener.onClick(Long.valueOf(id_dh.toString()));
+            }
+        });
     }
 }
