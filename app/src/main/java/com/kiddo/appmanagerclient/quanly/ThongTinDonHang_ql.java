@@ -1,6 +1,7 @@
 package com.kiddo.appmanagerclient.quanly;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -69,7 +70,7 @@ public class ThongTinDonHang_ql extends AppCompatActivity {
     private void showTTDH(){
         getTTDH();
         if (donHang != null) {
-            ten_kh.setText(donHang.getName());
+            ten_kh.setText(donHang.getName().toString());
         } else {
             Toast.makeText(this, "Unable ", Toast.LENGTH_SHORT).show();
         }
