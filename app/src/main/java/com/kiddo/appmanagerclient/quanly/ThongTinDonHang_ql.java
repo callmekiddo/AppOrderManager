@@ -64,7 +64,6 @@ public class ThongTinDonHang_ql extends AppCompatActivity {
         id = Objects.requireNonNull(getIntent().getExtras()).getLong("ID");
 
         getTTDH();
-        onClickChooseNV();
     }
 
     private void getTTDH(){
