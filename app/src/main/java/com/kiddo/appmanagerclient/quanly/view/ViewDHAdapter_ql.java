@@ -1,6 +1,5 @@
 package com.kiddo.appmanagerclient.quanly.view;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.kiddo.appmanagerclient.OnItemClickListener;
 import com.kiddo.appmanagerclient.R;
 import com.kiddo.appmanagerclient.model.DonHang;
 
@@ -18,7 +18,8 @@ import java.util.Locale;
 public class ViewDHAdapter_ql extends RecyclerView.Adapter<ViewDHHolder_ql> {
     private List<DonHang> listDH;
     private OnItemClickListener onItemClickListener;
-    public ViewDHAdapter_ql(List<DonHang> listDH,OnItemClickListener onItemClickListener){
+
+    public ViewDHAdapter_ql(List<DonHang> listDH, OnItemClickListener onItemClickListener){
         this.listDH = listDH;
         this.onItemClickListener = onItemClickListener;
     }
@@ -37,8 +38,8 @@ public class ViewDHAdapter_ql extends RecyclerView.Adapter<ViewDHHolder_ql> {
     public void onBindViewHolder(@NonNull ViewDHHolder_ql holder, int position) {
         DonHang dh = listDH.get(position);
         holder.id_dh.setText(String.format(Locale.getDefault(),"%d",dh.getId()));
-        holder.bind(onItemClickListener);
         holder.create_date.setText(dh.getCreateAt());
+        holder.bind(onItemClickListener);
     }
 
     @Override

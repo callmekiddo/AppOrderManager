@@ -42,6 +42,9 @@ public class ViewDHMAAdapter extends RecyclerView.Adapter<ViewDHMAHolder> {
 
     @Override
     public int getItemCount() {
-        return 0;
+        if(listDHMA == null){
+            return  0;
+        }
+        return listDHMA.size();
     }
 }

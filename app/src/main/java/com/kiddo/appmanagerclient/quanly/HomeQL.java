@@ -2,23 +2,14 @@ package com.kiddo.appmanagerclient.quanly;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kiddo.appmanagerclient.R;
-import com.kiddo.appmanagerclient.datastore.TokenStore;
-import com.kiddo.appmanagerclient.model.AuthReponse;
 import com.kiddo.appmanagerclient.model.DonHang;
-import com.kiddo.appmanagerclient.model.DonHang_MonAn;
-import com.kiddo.appmanagerclient.nhanvien.view.ViewDHAdapter_nv;
-import com.kiddo.appmanagerclient.quanly.view.OnItemClickListener;
+import com.kiddo.appmanagerclient.OnItemClickListener;
 import com.kiddo.appmanagerclient.quanly.view.ViewDHAdapter_ql;
-import com.kiddo.appmanagerclient.retrofit.LoginAPI;
 import com.kiddo.appmanagerclient.retrofit.QuanLyAPI;
 import com.kiddo.appmanagerclient.retrofit.RetrofitService;
 import com.kiddo.appmanagerclient.retrofit.TokenInterceptor;
@@ -39,9 +30,7 @@ public class HomeQL extends AppCompatActivity {
 
     private List<DonHang> listDH;
 
-    private String status = "";
-
-    private DonHang donHang;
+    private String status = "CREATED";
 
     RetrofitService retrofitService = new RetrofitService();
     OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new TokenInterceptor()).build();
@@ -57,7 +46,6 @@ public class HomeQL extends AppCompatActivity {
         listDH = new ArrayList<>();
         getListDH();
 
-
     }
 
 
@@ -69,8 +57,8 @@ public class HomeQL extends AppCompatActivity {
                         if(response.body() == null){
                             return;
                         }else {
-                            listView(response.body());
-
+                            List<DonHang> filterList = filterByStatus(response.body(), status);
+                            listView(filterList);
                         }
                     }
 
@@ -79,6 +67,16 @@ public class HomeQL extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    private List<DonHang> filterByStatus(List<DonHang> list, String status){
+        List<DonHang> filterList = new ArrayList<>();
+        for(DonHang dh : list){
+            if(dh.getStatus().equals(status)){
+                filterList.add(dh);
+            }
+        }
+        return filterList;
     }
 
     private void listView(List<DonHang> listDH){

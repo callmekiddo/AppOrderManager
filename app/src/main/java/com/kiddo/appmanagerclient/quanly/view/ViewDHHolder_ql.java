@@ -6,6 +6,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.kiddo.appmanagerclient.OnItemClickListener;
 import com.kiddo.appmanagerclient.R;
 
 public class ViewDHHolder_ql extends RecyclerView.ViewHolder {
@@ -19,7 +20,7 @@ public class ViewDHHolder_ql extends RecyclerView.ViewHolder {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onItemClickListener.onClick(Long.valueOf(id_dh.toString()));
+                onItemClickListener.onClick(Long.parseLong(id_dh.getText().toString()));
             }
         });
     }

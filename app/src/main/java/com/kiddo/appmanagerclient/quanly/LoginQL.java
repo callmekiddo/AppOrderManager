@@ -65,10 +65,10 @@ public class LoginQL extends AppCompatActivity {
                                 }else {
                                     authReponse = response.body();
                                     if(authReponse.getRole().get(0).equals(Role)){
-                                        Intent intent = new Intent(LoginQL.this, HomeQL.class);
                                         TokenStore tokenStore = new TokenStore();
                                         tokenStore.saveToken(authReponse.getAccessToken());
 
+                                        Intent intent = new Intent(LoginQL.this, HomeQL.class);
                                         startActivity(intent);
                                     }else{
                                       Toast.makeText(LoginQL.this, "Tên đăng nhập hoặc mật khẩu không đúng",
@@ -79,8 +79,7 @@ public class LoginQL extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Call<AuthReponse> call, Throwable t) {
-                                Toast.makeText(LoginQL.this, "?",
-                                        Toast.LENGTH_SHORT).show();
+
                             }
                         });
             }

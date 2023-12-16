@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.kiddo.appmanagerclient.OnItemClickListener;
 import com.kiddo.appmanagerclient.R;
 import com.kiddo.appmanagerclient.model.DonHang;
 
@@ -15,9 +16,11 @@ import java.util.Locale;
 
 public class ViewDHAdapter_nv extends RecyclerView.Adapter<ViewDHHolder_nv> {
     private List<DonHang> listDH;
+    private OnItemClickListener onItemClickListener;
 
-    public ViewDHAdapter_nv(List<DonHang> listDH){
+    public ViewDHAdapter_nv(List<DonHang> listDH, OnItemClickListener onItemClickListener){
         this.listDH = listDH;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -35,6 +38,7 @@ public class ViewDHAdapter_nv extends RecyclerView.Adapter<ViewDHHolder_nv> {
         DonHang dh = listDH.get(position);
         holder.id_dh.setText(String.format(Locale.getDefault(),"%d",dh.getId()));
         holder.create_date.setText(dh.getCreateAt());
+        holder.bind(onItemClickListener);
     }
 
     @Override

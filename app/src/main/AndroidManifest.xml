@@ -22,8 +22,9 @@
         <activity android:name=".quanly.LoginQL"/>
         <activity android:name=".quanly.HomeQL"/>
         <activity android:name=".nhanvien.HomeNV"/>
+        <activity android:name=".quanly.ThongTinDonHang_ql"/>
         <activity
-            android:name=".InPutActivity"
+            android:name=".nhanvien.ThongTinDonHang_nv"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

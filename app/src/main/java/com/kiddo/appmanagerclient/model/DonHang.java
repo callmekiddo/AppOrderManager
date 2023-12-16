@@ -13,6 +13,8 @@ public class DonHang {
 
     private double price;
 
+    private String address;
+
     private String createdAt;
 
     private String status;
@@ -57,6 +59,22 @@ public class DonHang {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getCreateAt() {

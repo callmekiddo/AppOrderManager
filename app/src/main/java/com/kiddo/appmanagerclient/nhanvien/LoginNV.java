@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.kiddo.appmanagerclient.R;
+import com.kiddo.appmanagerclient.datastore.TokenStore;
 import com.kiddo.appmanagerclient.model.Account;
 import com.kiddo.appmanagerclient.model.AuthReponse;
 import com.kiddo.appmanagerclient.quanly.HomeQL;;
@@ -30,7 +31,7 @@ public class LoginNV extends AppCompatActivity {
 
     private AuthReponse authReponse;
 
-    private String Role = "ROLE_STAFF";
+    private String Role = "ROLE_SHIPPER";
 
     RetrofitService retrofitService = new RetrofitService();
     LoginAPI loginAPI = retrofitService.getRetrofit().build().create(LoginAPI.class);
@@ -66,8 +67,10 @@ public class LoginNV extends AppCompatActivity {
                                 } else {
                                     authReponse = response.body();
                                     if (authReponse.getRole().get(1).equals(Role)) {
+                                        TokenStore tokenStore = new TokenStore();
+                                        tokenStore.saveToken(authReponse.getAccessToken());
+
                                         Intent intent = new Intent(LoginNV.this, HomeQL.class);
-                                        intent.putExtra("token", authReponse.getAccessToken());
                                         startActivity(intent);
                                     } else {
                                         Toast.makeText(LoginNV.this, "Tên đăng nhập hoặc mật khẩu không đúng",

@@ -1,5 +1,6 @@
 package com.kiddo.appmanagerclient.nhanvien;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,9 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.kiddo.appmanagerclient.R;
 import com.kiddo.appmanagerclient.model.DonHang;
-import com.kiddo.appmanagerclient.nhanvien.view.ViewDHAdapter_nv;
+import com.kiddo.appmanagerclient.quanly.ThongTinDonHang_ql;
+import com.kiddo.appmanagerclient.OnItemClickListener;
+import com.kiddo.appmanagerclient.quanly.view.ViewDHAdapter_ql;
 import com.kiddo.appmanagerclient.retrofit.NhanVienAPI;
-import com.kiddo.appmanagerclient.retrofit.QuanLyAPI;
 import com.kiddo.appmanagerclient.retrofit.RetrofitService;
 import com.kiddo.appmanagerclient.retrofit.TokenInterceptor;
 
@@ -28,6 +30,8 @@ public class HomeNV extends AppCompatActivity {
     private String token = "";
 
     private List<DonHang> listDH;
+
+    private String status = "DELIVERY";
 
     RetrofitService retrofitService = new RetrofitService();
     OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new TokenInterceptor()).build();
@@ -48,8 +52,12 @@ public class HomeNV extends AppCompatActivity {
                 .enqueue(new Callback<List<DonHang>>() {
                     @Override
                     public void onResponse(Call<List<DonHang>> call, Response<List<DonHang>> response) {
-                        listView(response.body());
-
+                        if(response.body() == null){
+                            return;
+                        }else {
+                            List<DonHang> filterList = filterByStatus(response.body(), status);
+                            listView(filterList);
+                        }
                     }
 
                     @Override
@@ -59,8 +67,25 @@ public class HomeNV extends AppCompatActivity {
                 });
     }
 
+    private List<DonHang> filterByStatus(List<DonHang> list, String status){
+        List<DonHang> filterList = new ArrayList<>();
+        for(DonHang dh : list){
+            if(dh.getStatus().equals(status)){
+                filterList.add(dh);
+            }
+        }
+        return filterList;
+    }
+
     private void listView(List<DonHang> listDH){
-        ViewDHAdapter_nv viewDHAdapterNv= new ViewDHAdapter_nv(listDH);
-        recyclerView.setAdapter(viewDHAdapterNv);
+        ViewDHAdapter_ql viewDHAdapterQl = new ViewDHAdapter_ql(listDH, new OnItemClickListener() {
+            @Override
+            public void onClick(Long id) {
+                Intent intent = new Intent(HomeNV.this, ThongTinDonHang_ql.class);
+                intent.putExtra("ID", id);
+                startActivity(intent);
+            }
+        });
+        recyclerView.setAdapter(viewDHAdapterQl);
     }
 }
