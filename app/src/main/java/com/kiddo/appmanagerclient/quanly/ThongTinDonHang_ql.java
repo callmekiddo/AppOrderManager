@@ -1,6 +1,7 @@
 package com.kiddo.appmanagerclient.quanly;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,6 +23,7 @@ import com.kiddo.appmanagerclient.retrofit.TokenInterceptor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -57,25 +59,10 @@ public class ThongTinDonHang_ql extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.ds_monan);
 
-        id = getIntent().getExtras().getLong("ID");
+        id = Objects.requireNonNull(getIntent().getExtras()).getLong("ID");
 
-        showTTDH();
-
-        getListMA();
-
-        onClickChooseNV();
-    }
-
-    private void showTTDH(){
         getTTDH();
-        if (donHang != null) {
-            ten_kh.setText(donHang.getName());
-        } else {
-            Toast.makeText(this, "Unable ", Toast.LENGTH_SHORT).show();
-        }
-//        sdt.setText(donHang.getPhone());
-//        dia_chi.setText(donHang.getAddress());
-//        tien.setText((int) donHang.getPrice());
+        onClickChooseNV();
     }
 
     private void getTTDH(){
@@ -83,23 +70,28 @@ public class ThongTinDonHang_ql extends AppCompatActivity {
                 .enqueue(new Callback<DonHang>() {
                     @Override
                     public void onResponse(Call<DonHang> call, Response<DonHang> response) {
-                        donHang = response.body();
+                        if(response.isSuccessful()){
+                            donHang = response.body();
+                            assert donHang != null;
+                            sdt.setText(donHang.getPhone());
+                            dia_chi.setText(donHang.getAddress());
+                            tien.setText(String.valueOf(donHang.getPrice()));
+                            ten_kh.setText(donHang.getName());
+                            ViewDHMAAdapter viewDHMAAdapter = new ViewDHMAAdapter(donHang.getOrderItemDtoList());
+                            recyclerView.setAdapter(viewDHMAAdapter);
+                        }
+                        else{
+                            Toast.makeText(ThongTinDonHang_ql.this,"Something's wrong",Toast.LENGTH_LONG).show();
+                        }
                     }
 
                     @Override
                     public void onFailure(Call<DonHang> call, Throwable t) {
-
+                        Toast.makeText(ThongTinDonHang_ql.this,t.getMessage(),Toast.LENGTH_LONG).show();
                     }
                 });
     }
 
-    private void getListMA(){
-        List<DonHang_MonAn> listDHMA = new ArrayList<>();
-        getTTDH();
-        ViewDHMAAdapter viewDHMAAdapter = new ViewDHMAAdapter(listDHMA);
-        recyclerView.setAdapter(viewDHMAAdapter);
-
-    }
 
     private void onClickChooseNV(){
         quanLyAPI.getNV()

@@ -18,6 +18,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppManagerClient"
         tools:targetApi="31">
+        <activity android:name=".InPutActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".nhanvien.LoginNV"/>
         <activity android:name=".quanly.LoginQL"/>
         <activity android:name=".quanly.HomeQL"/>
@@ -26,11 +34,7 @@
         <activity
             android:name=".nhanvien.ThongTinDonHang_nv"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
