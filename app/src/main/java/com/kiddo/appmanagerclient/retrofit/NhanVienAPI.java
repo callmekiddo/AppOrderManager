@@ -12,8 +12,8 @@ import retrofit2.http.Path;
 
 public interface NhanVienAPI {
 
-    @GET("/api/order")
-    Call<List<DonHang>> getDH(@Body String token);
+    @GET("/api/shipper/order")
+    Call<List<DonHang>> getDH();
 
     @GET("/api/order/{id}")
     Call<DonHang> getDHByID(@Path("id") Long id);

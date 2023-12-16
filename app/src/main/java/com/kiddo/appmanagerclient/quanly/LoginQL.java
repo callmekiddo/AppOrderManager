@@ -61,7 +61,7 @@ public class LoginQL extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<AuthReponse> call, Response<AuthReponse> response) {
                                 if(!response.isSuccessful()){
-                                    Toast.makeText(LoginQL.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginQL.this, "Tên đăng nhập hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
                                 }else {
                                     authReponse = response.body();
                                     if(authReponse.getRole().get(0).equals(Role)){
@@ -70,9 +70,6 @@ public class LoginQL extends AppCompatActivity {
 
                                         Intent intent = new Intent(LoginQL.this, HomeQL.class);
                                         startActivity(intent);
-                                    }else{
-                                      Toast.makeText(LoginQL.this, "Tên đăng nhập hoặc mật khẩu không đúng",
-                                              Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             }

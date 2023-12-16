@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.kiddo.appmanagerclient.R;
 import com.kiddo.appmanagerclient.model.DonHang;
+import com.kiddo.appmanagerclient.nhanvien.view.ViewDHAdapter_nv;
 import com.kiddo.appmanagerclient.quanly.ThongTinDonHang_ql;
 import com.kiddo.appmanagerclient.OnItemClickListener;
-import com.kiddo.appmanagerclient.quanly.view.ViewDHAdapter_ql;
 import com.kiddo.appmanagerclient.retrofit.NhanVienAPI;
 import com.kiddo.appmanagerclient.retrofit.RetrofitService;
 import com.kiddo.appmanagerclient.retrofit.TokenInterceptor;
@@ -31,7 +31,7 @@ public class HomeNV extends AppCompatActivity {
 
     private List<DonHang> listDH;
 
-    private String status = "DELIVERY";
+    private String status = "DELIVERING";
 
     RetrofitService retrofitService = new RetrofitService();
     OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new TokenInterceptor()).build();
@@ -42,13 +42,15 @@ public class HomeNV extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_nv);
 
+        recyclerView = findViewById(R.id.view_dh_nv);
+
         listDH = new ArrayList<>();
         getListDH();
 
     }
 
     private void getListDH(){
-        nhanVienAPI.getDH(token)
+        nhanVienAPI.getDH()
                 .enqueue(new Callback<List<DonHang>>() {
                     @Override
                     public void onResponse(Call<List<DonHang>> call, Response<List<DonHang>> response) {
@@ -78,14 +80,14 @@ public class HomeNV extends AppCompatActivity {
     }
 
     private void listView(List<DonHang> listDH){
-        ViewDHAdapter_ql viewDHAdapterQl = new ViewDHAdapter_ql(listDH, new OnItemClickListener() {
+        ViewDHAdapter_nv viewDHAdapterNv = new ViewDHAdapter_nv(listDH, new OnItemClickListener() {
             @Override
             public void onClick(Long id) {
-                Intent intent = new Intent(HomeNV.this, ThongTinDonHang_ql.class);
+                Intent intent = new Intent(HomeNV.this, ThongTinDonHang_nv.class);
                 intent.putExtra("ID", id);
                 startActivity(intent);
             }
         });
-        recyclerView.setAdapter(viewDHAdapterQl);
+        recyclerView.setAdapter(viewDHAdapterNv);
     }
 }

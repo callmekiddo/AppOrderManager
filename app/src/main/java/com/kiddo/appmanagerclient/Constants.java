@@ -1,5 +1,5 @@
 package com.kiddo.appmanagerclient;
 
-public final class Constants{
-    public final static String API_PREFIX = "http://192.168.1.2/";
+public class Constants {
+    public static String API_PREFIX = "http://192.168.10.111/";
 }

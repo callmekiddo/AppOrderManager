@@ -32,11 +32,6 @@
         <activity android:name=".quanly.HomeQL"/>
         <activity android:name=".nhanvien.HomeNV"/>
         <activity android:name=".quanly.ThongTinDonHang_ql"/>
-        <activity
-            android:name=".InPutActivity"
-            android:exported="true">
-
-        </activity>
     </application>
 
 </manifest>

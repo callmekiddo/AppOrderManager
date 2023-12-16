@@ -1,11 +1,12 @@
 package com.kiddo.appmanagerclient.quanly;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kiddo.appmanagerclient.R;
 import com.kiddo.appmanagerclient.donhang_monan.ViewDHMAAdapter;
 import com.kiddo.appmanagerclient.model.DonHang;
-import com.kiddo.appmanagerclient.model.DonHang_MonAn;
 import com.kiddo.appmanagerclient.model.NhanVien;
 import com.kiddo.appmanagerclient.retrofit.QuanLyAPI;
 import com.kiddo.appmanagerclient.retrofit.RetrofitService;
@@ -36,6 +36,8 @@ public class ThongTinDonHang_ql extends AppCompatActivity {
 
     private AutoCompleteTextView ten;
 
+    private Button xac_nhan;
+
     private RecyclerView recyclerView;
 
     private Long id;
@@ -43,7 +45,10 @@ public class ThongTinDonHang_ql extends AppCompatActivity {
     private DonHang donHang;
 
     private List<NhanVien> listNV;
+
     private ViewDHMAAdapter adapter;
+
+    private NhanVien nhanVien;
 
     RetrofitService retrofitService = new RetrofitService();
     OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new TokenInterceptor()).build();
@@ -57,6 +62,7 @@ public class ThongTinDonHang_ql extends AppCompatActivity {
         sdt = findViewById(R.id.sdt);
         dia_chi = findViewById(R.id.dia_chi);
         tien = findViewById(R.id.tong_tien);
+        xac_nhan = findViewById(R.id.xac_nhan);
 
         adapter = new ViewDHMAAdapter(new ArrayList<>());
         recyclerView = findViewById(R.id.ds_monan);
@@ -64,7 +70,13 @@ public class ThongTinDonHang_ql extends AppCompatActivity {
         id = Objects.requireNonNull(getIntent().getExtras()).getLong("ID");
 
         getTTDH();
+
+        onClickChooseNV();
+
+        onCLickConfirm();
     }
+
+
 
     private void getTTDH(){
         quanLyAPI.getDHByID(id)
@@ -100,14 +112,14 @@ public class ThongTinDonHang_ql extends AppCompatActivity {
                     public void onResponse(Call<List<NhanVien>> call, Response<List<NhanVien>> response) {
                         listNV = response.body();
                         ArrayAdapter<String> nhanVienArrayAdapter = new ArrayAdapter<>(
-                                ThongTinDonHang_ql.this, R.layout.ten_nv, getListNameNV(listNV));
-                        ten = findViewById(R.id.fill_status);
+                                ThongTinDonHang_ql.this, R.layout.nhan_vien, getListNameNV(listNV));
+                        ten = findViewById(R.id.fill_nv);
                         ten.setAdapter(nhanVienArrayAdapter);
 
                         ten.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                                nhanVien = listNV.get(i);
                             }
                         });
                     }
@@ -122,8 +134,38 @@ public class ThongTinDonHang_ql extends AppCompatActivity {
     private List<String> getListNameNV(List<NhanVien> list) {
         List<String> name = new ArrayList<>();
         for (NhanVien nhanVien : list) {
-            name.add(nhanVien.getName());
+            name.add(nhanVien.getName()  + "\nid: " + nhanVien.getId().toString());
         }
         return name;
+    }
+
+    private void onCLickConfirm(){
+        xac_nhan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(nhanVien != null){
+                    Long id_nv = nhanVien.getId();
+
+                    quanLyAPI.toShipper(id, id_nv)
+                            .enqueue(new Callback<Long>() {
+                                @Override
+                                public void onResponse(Call<Long> call, Response<Long> response) {
+                                    if(response.isSuccessful()){
+                                        Intent intent = new Intent(ThongTinDonHang_ql.this, HomeQL.class);
+                                        startActivity(intent);
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Long> call, Throwable t) {
+
+                                }
+                            });
+                }else{
+                    Toast.makeText(ThongTinDonHang_ql.this, "Vui lòng chọn nhân viên giao hàng",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

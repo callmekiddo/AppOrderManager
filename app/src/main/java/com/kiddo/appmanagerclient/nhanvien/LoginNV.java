@@ -31,7 +31,7 @@ public class LoginNV extends AppCompatActivity {
 
     private AuthReponse authReponse;
 
-    private String Role = "ROLE_SHIPPER";
+    private String Role = "ROLE_STAFF";
 
     RetrofitService retrofitService = new RetrofitService();
     LoginAPI loginAPI = retrofitService.getRetrofit().build().create(LoginAPI.class);
@@ -63,18 +63,15 @@ public class LoginNV extends AppCompatActivity {
                             @Override
                             public void onResponse(Call<AuthReponse> call, Response<AuthReponse> response) {
                                 if (!response.isSuccessful()) {
-                                    Toast.makeText(LoginNV.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginNV.this, "Tên đăng nhập hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
                                 } else {
                                     authReponse = response.body();
-                                    if (authReponse.getRole().get(1).equals(Role)) {
+                                    if (authReponse.getRole().get(0).equals(Role)) {
                                         TokenStore tokenStore = new TokenStore();
                                         tokenStore.saveToken(authReponse.getAccessToken());
 
                                         Intent intent = new Intent(LoginNV.this, HomeQL.class);
                                         startActivity(intent);
-                                    } else {
-                                        Toast.makeText(LoginNV.this, "Tên đăng nhập hoặc mật khẩu không đúng",
-                                                Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             }

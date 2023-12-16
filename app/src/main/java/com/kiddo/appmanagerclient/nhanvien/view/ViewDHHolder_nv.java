@@ -10,7 +10,7 @@ import com.kiddo.appmanagerclient.OnItemClickListener;
 import com.kiddo.appmanagerclient.R;
 
 public class ViewDHHolder_nv extends RecyclerView.ViewHolder {
-    TextView id_dh, id_kh, create_date;
+    TextView id_dh, create_date;
     public ViewDHHolder_nv(@NonNull View itemView) {
         super(itemView);
         id_dh = itemView.findViewById(R.id.id_dh);

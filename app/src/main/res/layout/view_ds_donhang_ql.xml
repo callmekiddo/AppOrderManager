@@ -53,6 +53,6 @@
         android:layout_toEndOf="@+id/textView8"
         android:maxLines="1"
         android:textSize="18sp"
-        tools:text="16-01-2002 14:01:02" />
+        tools:text="date time" />
 
 </RelativeLayout>
