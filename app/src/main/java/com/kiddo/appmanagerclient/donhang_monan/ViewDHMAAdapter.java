@@ -7,11 +7,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.kiddo.appmanagerclient.Constants;
 import com.kiddo.appmanagerclient.R;
 import com.kiddo.appmanagerclient.model.DonHang;
 import com.kiddo.appmanagerclient.model.DonHang_MonAn;
 import com.kiddo.appmanagerclient.nhanvien.view.ViewDHHolder_nv;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ViewDHMAAdapter extends RecyclerView.Adapter<ViewDHMAHolder> {
@@ -34,12 +37,21 @@ public class ViewDHMAAdapter extends RecyclerView.Adapter<ViewDHMAHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewDHMAHolder holder, int position) {
         DonHang_MonAn dhma = listDHMA.get(position);
-        holder.img.setImageResource(Integer.parseInt(dhma.getImageUrl().toString()));
+        Glide
+                .with(holder.itemView)
+                .load(Constants.API_PREFIX + dhma.getImageUrl())
+                .error(android.R.drawable.stat_notify_error)
+                .skipMemoryCache(true)
+                .into(holder.img);
+
         holder.ten.setText(dhma.getName());
         holder.tien.setText(dhma.getPrice().toString());
-        holder.so_lg.setText(dhma.getQuantity());
+        holder.so_lg.setText(String.valueOf(dhma.getQuantity()));
     }
-
+    public void setList(List<DonHang_MonAn> list){
+        listDHMA = list;
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
         if(listDHMA == null){

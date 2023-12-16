@@ -43,6 +43,7 @@ public class ThongTinDonHang_ql extends AppCompatActivity {
     private DonHang donHang;
 
     private List<NhanVien> listNV;
+    private ViewDHMAAdapter adapter;
 
     RetrofitService retrofitService = new RetrofitService();
     OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new TokenInterceptor()).build();
@@ -57,8 +58,9 @@ public class ThongTinDonHang_ql extends AppCompatActivity {
         dia_chi = findViewById(R.id.dia_chi);
         tien = findViewById(R.id.tong_tien);
 
+        adapter = new ViewDHMAAdapter(new ArrayList<>());
         recyclerView = findViewById(R.id.ds_monan);
-
+        recyclerView.setAdapter(adapter);
         id = Objects.requireNonNull(getIntent().getExtras()).getLong("ID");
 
         getTTDH();
@@ -77,8 +79,7 @@ public class ThongTinDonHang_ql extends AppCompatActivity {
                             dia_chi.setText(donHang.getAddress());
                             tien.setText(String.valueOf(donHang.getPrice()));
                             ten_kh.setText(donHang.getName());
-                            ViewDHMAAdapter viewDHMAAdapter = new ViewDHMAAdapter(donHang.getOrderItemDtoList());
-                            recyclerView.setAdapter(viewDHMAAdapter);
+                            adapter.setList(donHang.getOrderItemDtoList());
                         }
                         else{
                             Toast.makeText(ThongTinDonHang_ql.this,"Something's wrong",Toast.LENGTH_LONG).show();
