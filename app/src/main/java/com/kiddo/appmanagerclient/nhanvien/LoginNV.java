@@ -13,7 +13,7 @@ import com.kiddo.appmanagerclient.R;
 import com.kiddo.appmanagerclient.datastore.TokenStore;
 import com.kiddo.appmanagerclient.model.Account;
 import com.kiddo.appmanagerclient.model.AuthReponse;
-import com.kiddo.appmanagerclient.quanly.HomeQL;;
+import com.kiddo.appmanagerclient.quanly.HomeQL;
 import com.kiddo.appmanagerclient.retrofit.LoginAPI;
 import com.kiddo.appmanagerclient.retrofit.NhanVienAPI;
 import com.kiddo.appmanagerclient.retrofit.RetrofitService;
@@ -31,7 +31,7 @@ public class LoginNV extends AppCompatActivity {
 
     private AuthReponse authReponse;
 
-    private String Role = "ROLE_STAFF";
+    private final String Role = "ROLE_STAFF";
 
     RetrofitService retrofitService = new RetrofitService();
     LoginAPI loginAPI = retrofitService.getRetrofit().build().create(LoginAPI.class);
@@ -70,7 +70,7 @@ public class LoginNV extends AppCompatActivity {
                                         TokenStore tokenStore = new TokenStore();
                                         tokenStore.saveToken(authReponse.getAccessToken());
 
-                                        Intent intent = new Intent(LoginNV.this, HomeQL.class);
+                                        Intent intent = new Intent(LoginNV.this, HomeNV.class);
                                         startActivity(intent);
                                     }
                                 }
@@ -88,7 +88,6 @@ public class LoginNV extends AppCompatActivity {
 
     private void checkUser() {
         if (!validateUsername() || !validatePassword()) {
-            return;
         }
     }
 

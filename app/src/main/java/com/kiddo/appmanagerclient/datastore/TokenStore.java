@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import com.kiddo.appmanagerclient.MyApplication;
 
 public class TokenStore{
-    private SharedPreferences sharedPreferences;
+    private final SharedPreferences sharedPreferences;
     public TokenStore(){
         sharedPreferences = MyApplication.App().getSharedPreferences("SHARE_PREFERENCES",Context.MODE_PRIVATE);
     }

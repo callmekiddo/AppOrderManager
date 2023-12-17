@@ -30,7 +30,7 @@ public class LoginQL extends AppCompatActivity {
 
     private AuthReponse authReponse;
 
-    private String Role = "ROLE_MANAGER";
+    private final String Role = "ROLE_MANAGER";
 
     RetrofitService retrofitService = new RetrofitService();
     LoginAPI loginAPI = retrofitService.getRetrofit().build().create(LoginAPI.class);
@@ -86,7 +86,6 @@ public class LoginQL extends AppCompatActivity {
 
     private void checkUser(){
         if(!validateUsername() || !validatePassword()){
-            return;
         }
     }
 

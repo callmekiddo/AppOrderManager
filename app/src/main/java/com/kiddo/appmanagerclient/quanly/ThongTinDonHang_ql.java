@@ -146,13 +146,16 @@ public class ThongTinDonHang_ql extends AppCompatActivity {
                 if(nhanVien != null){
                     Long id_nv = nhanVien.getId();
 
-                    quanLyAPI.toShipper(id, id_nv)
+                    quanLyAPI.sendToShipper(id, id_nv)
                             .enqueue(new Callback<Long>() {
                                 @Override
                                 public void onResponse(Call<Long> call, Response<Long> response) {
                                     if(response.isSuccessful()){
-                                        Intent intent = new Intent(ThongTinDonHang_ql.this, HomeQL.class);
+                                        Toast.makeText(ThongTinDonHang_ql.this,
+                                                "Đã gửi đơn hàng cho nhân viên: " + nhanVien.getName(), Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent();
                                         startActivity(intent);
+                                        finish();
                                     }
                                 }
 
@@ -162,7 +165,7 @@ public class ThongTinDonHang_ql extends AppCompatActivity {
                                 }
                             });
                 }else{
-                    Toast.makeText(ThongTinDonHang_ql.this, "Vui lòng chọn nhân viên giao hàng",
+                    Toast.makeText(ThongTinDonHang_ql.this, "Chưa chọn nhân viên giao hàng",
                             Toast.LENGTH_SHORT).show();
                 }
             }

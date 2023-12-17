@@ -26,11 +26,11 @@ public class HomeQL extends AppCompatActivity {
 
     private RecyclerView recyclerView;
 
-    private String token = "";
+    private final String token = "";
 
     private List<DonHang> listDH;
 
-    private String status = "CREATED";
+    private final String status = "CREATED";
 
     RetrofitService retrofitService = new RetrofitService();
     OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new TokenInterceptor()).build();
@@ -55,7 +55,6 @@ public class HomeQL extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<List<DonHang>> call, Response<List<DonHang>> response) {
                         if(response.body() == null){
-                            return;
                         }else {
                             List<DonHang> filterList = filterByStatus(response.body(), status);
                             listView(filterList);

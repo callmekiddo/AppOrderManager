@@ -1,10 +1,12 @@
 package com.kiddo.appmanagerclient.nhanvien;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import com.kiddo.appmanagerclient.retrofit.TokenInterceptor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import okhttp3.OkHttpClient;
@@ -35,6 +38,8 @@ public class ThongTinDonHang_nv extends AppCompatActivity {
 
     private AutoCompleteTextView autoCompleteTextView;
 
+    private Button hoan_thanh;
+
     private RecyclerView recyclerView;
 
     private Long id;
@@ -42,6 +47,10 @@ public class ThongTinDonHang_nv extends AppCompatActivity {
     private DonHang donHang;
 
     private ViewDHMAAdapter adapter;
+
+    private String trang_thai;
+
+    private Boolean isComplete;
 
     RetrofitService retrofitService = new RetrofitService();
     OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new TokenInterceptor()).build();
@@ -55,6 +64,7 @@ public class ThongTinDonHang_nv extends AppCompatActivity {
         sdt = findViewById(R.id.sdt);
         dia_chi = findViewById(R.id.dia_chi);
         tien = findViewById(R.id.tong_tien);
+        hoan_thanh = findViewById(R.id.hoan_thanh);
 
         adapter = new ViewDHMAAdapter(new ArrayList<>());
         recyclerView = findViewById(R.id.ds_monan);
@@ -64,6 +74,8 @@ public class ThongTinDonHang_nv extends AppCompatActivity {
         getTTDH();
 
         onClickChooseStatus();
+
+        onClickComplete();
     }
 
     private void getTTDH(){
@@ -93,7 +105,7 @@ public class ThongTinDonHang_nv extends AppCompatActivity {
     }
 
     private void onClickChooseStatus(){
-        String[] status = new String[]{"CANCEL", "COMPLETE"};
+        String[] status = new String[]{"ĐÃ NHẬN", "ĐÃ HỦY"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.trang_thai, status);
         autoCompleteTextView = findViewById(R.id.fill_status);
         autoCompleteTextView.setAdapter(adapter);
@@ -101,7 +113,38 @@ public class ThongTinDonHang_nv extends AppCompatActivity {
         autoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                trang_thai = autoCompleteTextView.getText().toString();
+            }
+        });
+    }
 
+    private void onClickComplete(){
+        hoan_thanh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(trang_thai != null) {
+                    isComplete = trang_thai.equals("ĐÃ NHẬN");
+                    nhanVienAPI.isComplete(id, isComplete)
+                            .enqueue(new Callback<Map<Long, String>>() {
+                                @Override
+                                public void onResponse(Call<Map<Long, String>> call, Response<Map<Long, String>> response) {
+                                    if (response.isSuccessful()) {
+                                        Toast.makeText(ThongTinDonHang_nv.this,
+                                                "Đơn hàng: " + trang_thai, Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent();
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Map<Long, String>> call, Throwable t) {
+
+                                }
+                            });
+                }else {
+                    Toast.makeText(ThongTinDonHang_nv.this, "Chưa chọn trạng thái đơn hàng", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

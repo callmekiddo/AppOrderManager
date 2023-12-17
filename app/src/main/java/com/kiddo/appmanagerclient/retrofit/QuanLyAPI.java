@@ -27,5 +27,5 @@ public interface QuanLyAPI {
 
     @POST("/api/order/{id}")
     @FormUrlEncoded
-    Call<Long> toShipper(@Path("id") Long id, @Field("id") Long shipperId);
+    Call<Long> sendToShipper(@Path("id") Long id, @Field("id") Long shipperId);
 }

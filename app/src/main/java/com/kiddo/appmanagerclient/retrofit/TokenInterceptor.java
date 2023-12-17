@@ -9,7 +9,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class TokenInterceptor implements Interceptor {
-    private TokenStore store = new TokenStore();
+    private final TokenStore store = new TokenStore();
 
     @Override
     public Response intercept(Chain chain) throws IOException {

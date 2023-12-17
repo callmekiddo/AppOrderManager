@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class ViewDHAdapter_nv extends RecyclerView.Adapter<ViewDHHolder_nv> {
-    private List<DonHang> listDH;
-    private OnItemClickListener onItemClickListener;
+    private final List<DonHang> listDH;
+    private final OnItemClickListener onItemClickListener;
 
     public ViewDHAdapter_nv(List<DonHang> listDH, OnItemClickListener onItemClickListener){
         this.listDH = listDH;

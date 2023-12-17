@@ -26,11 +26,11 @@ public class HomeNV extends AppCompatActivity {
 
     private RecyclerView recyclerView;
 
-    private String token = "";
+    private final String token = "";
 
     private List<DonHang> listDH;
 
-    private String status = "DELIVERING";
+    private final String status = "DELIVERING";
 
     RetrofitService retrofitService = new RetrofitService();
     OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new TokenInterceptor()).build();
@@ -54,7 +54,6 @@ public class HomeNV extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<List<DonHang>> call, Response<List<DonHang>> response) {
                         if(response.body() == null){
-                            return;
                         }else {
                             List<DonHang> filterList = filterByStatus(response.body(), status);
                             listView(filterList);
