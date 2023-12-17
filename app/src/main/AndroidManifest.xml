@@ -31,6 +31,7 @@
         <activity android:name=".quanly.LoginQL"/>
         <activity android:name=".quanly.HomeQL"/>
         <activity android:name=".nhanvien.HomeNV"/>
+        <activity android:name=".nhanvien.ThongTinDonHang_nv"/>
         <activity android:name=".quanly.ThongTinDonHang_ql"/>
     </application>
 

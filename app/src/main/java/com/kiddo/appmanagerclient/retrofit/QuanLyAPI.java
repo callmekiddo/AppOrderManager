@@ -17,7 +17,7 @@ public interface QuanLyAPI {
 
 
     @GET("/api/order")
-    Call<List<DonHang>> getDH();
+    Call<List<DonHang>> getDHQL();
 
     @GET("/api/manager/shipper")
     Call<List<NhanVien>> getNV();

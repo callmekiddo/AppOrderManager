@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kiddo.appmanagerclient.R;
 import com.kiddo.appmanagerclient.model.DonHang;
 import com.kiddo.appmanagerclient.nhanvien.view.ViewDHAdapter_nv;
-import com.kiddo.appmanagerclient.quanly.ThongTinDonHang_ql;
 import com.kiddo.appmanagerclient.OnItemClickListener;
 import com.kiddo.appmanagerclient.retrofit.NhanVienAPI;
 import com.kiddo.appmanagerclient.retrofit.RetrofitService;
@@ -50,7 +49,7 @@ public class HomeNV extends AppCompatActivity {
     }
 
     private void getListDH(){
-        nhanVienAPI.getDH()
+        nhanVienAPI.getDHNV()
                 .enqueue(new Callback<List<DonHang>>() {
                     @Override
                     public void onResponse(Call<List<DonHang>> call, Response<List<DonHang>> response) {

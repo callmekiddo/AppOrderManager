@@ -50,7 +50,7 @@ public class HomeQL extends AppCompatActivity {
 
 
     private void getListDH(){
-        quanLyAPI.getDH()
+        quanLyAPI.getDHQL()
                 .enqueue(new Callback<List<DonHang>>() {
                     @Override
                     public void onResponse(Call<List<DonHang>> call, Response<List<DonHang>> response) {
