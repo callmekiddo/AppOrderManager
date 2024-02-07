@@ -153,7 +153,7 @@ public class ThongTinDonHang_ql extends AppCompatActivity {
                                     if(response.isSuccessful()){
                                         Toast.makeText(ThongTinDonHang_ql.this,
                                                 "Đã gửi đơn hàng cho nhân viên: " + nhanVien.getName(), Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent();
+                                        Intent intent = new Intent(ThongTinDonHang_ql.this,HomeQL.class);
                                         startActivity(intent);
                                         finish();
                                     }

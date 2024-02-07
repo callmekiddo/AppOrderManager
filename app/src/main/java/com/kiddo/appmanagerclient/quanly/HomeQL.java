@@ -89,4 +89,9 @@ public class HomeQL extends AppCompatActivity {
         });
         recyclerView.setAdapter(viewDHAdapterQl);
     }
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        getListDH();
+    }
 }

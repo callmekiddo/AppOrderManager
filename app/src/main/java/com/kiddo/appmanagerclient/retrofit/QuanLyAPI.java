@@ -16,16 +16,16 @@ import retrofit2.http.Path;
 public interface QuanLyAPI {
 
 
-    @GET("/api/order")
+    @GET("/api/manager/order")
     Call<List<DonHang>> getDHQL();
 
     @GET("/api/manager/shipper")
     Call<List<NhanVien>> getNV();
 
-    @GET("/api/order/{id}")
+    @GET("/api/manager/order/{id}")
     Call<DonHang> getDHByID(@Path("id") Long id);
 
-    @POST("/api/order/{id}")
+    @POST("/api/manager/order/{id}")
     @FormUrlEncoded
     Call<Long> sendToShipper(@Path("id") Long id, @Field("id") Long shipperId);
 }

@@ -131,7 +131,7 @@ public class ThongTinDonHang_nv extends AppCompatActivity {
                                     if (response.isSuccessful()) {
                                         Toast.makeText(ThongTinDonHang_nv.this,
                                                 "Đơn hàng: " + trang_thai, Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent();
+                                        Intent intent = new Intent(ThongTinDonHang_nv.this, HomeNV.class);
                                         startActivity(intent);
                                         finish();
                                     }

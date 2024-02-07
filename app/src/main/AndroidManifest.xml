@@ -29,9 +29,9 @@
         </activity>
         <activity android:name=".nhanvien.LoginNV"/>
         <activity android:name=".quanly.LoginQL"/>
-        <activity android:name=".quanly.HomeQL"/>
-        <activity android:name=".nhanvien.HomeNV"/>
-        <activity android:name=".nhanvien.ThongTinDonHang_nv"/>
+        <activity android:name=".quanly.HomeQL" android:launchMode="singleTask"/>
+        <activity android:name=".nhanvien.HomeNV" android:launchMode="singleTask"/>
+        <activity android:name=".nhanvien.ThongTinDonHang_nv" />
         <activity android:name=".quanly.ThongTinDonHang_ql"
             android:parentActivityName=".quanly.HomeQL"/>
     </application>

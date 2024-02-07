@@ -88,4 +88,10 @@ public class HomeNV extends AppCompatActivity {
         });
         recyclerView.setAdapter(viewDHAdapterNv);
     }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        getListDH();
+    }
 }

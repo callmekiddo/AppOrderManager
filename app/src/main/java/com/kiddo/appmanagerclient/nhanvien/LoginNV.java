@@ -18,6 +18,8 @@ import com.kiddo.appmanagerclient.retrofit.LoginAPI;
 import com.kiddo.appmanagerclient.retrofit.NhanVienAPI;
 import com.kiddo.appmanagerclient.retrofit.RetrofitService;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,12 +68,14 @@ public class LoginNV extends AppCompatActivity {
                                     Toast.makeText(LoginNV.this, "Tên đăng nhập hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
                                 } else {
                                     authReponse = response.body();
-                                    if (authReponse.getRole().get(0).equals(Role)) {
-                                        TokenStore tokenStore = new TokenStore();
-                                        tokenStore.saveToken(authReponse.getAccessToken());
-
-                                        Intent intent = new Intent(LoginNV.this, HomeNV.class);
-                                        startActivity(intent);
+                                    List<String> role = authReponse.getRole();
+                                    for(String r : role){
+                                        if (r.equals(Role)) {
+                                            TokenStore tokenStore = new TokenStore();
+                                            tokenStore.saveToken(authReponse.getAccessToken());
+                                            Intent intent = new Intent(LoginNV.this, HomeNV.class);
+                                            startActivity(intent);
+                                        }
                                     }
                                 }
                             }

@@ -18,7 +18,7 @@ public interface NhanVienAPI {
     @GET("/api/shipper/order")
     Call<List<DonHang>> getDHNV();
 
-    @GET("/api/order/{id}")
+    @GET("/api/shipper/order/{id}")
     Call<DonHang> getDHByID(@Path("id") Long id);
 
     @POST("/api/shipper/order/{id}")
